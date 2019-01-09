@@ -15,7 +15,7 @@ SPIDER_MODULES = ['bilibili.spiders']
 NEWSPIDER_MODULE = 'bilibili.spiders'
 
 LOG_LEVEL = 'INFO'
-LOG_FILE = './log.log'
+LOG_FILE = None
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'bilibili (+http://www.yourdomain.com)'
@@ -83,6 +83,11 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_PASSWORD = 'cuit051072'
 # mysql信息
+MYSQL_HOST = '119.27.176.229'
+MYSQL_PORT = 10012
+MYSQL_DATABASE = 'bili'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = '1428850347a+'
 DYNAMIC_TABLE_NAME = ''
 
 # Enable and configure the AutoThrottle extension (disabled by default)
