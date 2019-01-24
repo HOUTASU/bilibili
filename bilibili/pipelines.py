@@ -7,7 +7,7 @@
 
 import pymysql
 from pymysql.err import IntegrityError
-from bilibili.items import staticItem, dynamicItem
+from bilibili.items import dynamicItem
 
 
 # # mongo数据库连接及插入
@@ -114,12 +114,12 @@ class MysqlPipeline(object):
                 self.item_list_2.clear()
             # 异常处理，如果遇到重复插入，则重新对这一批次的每条数据进行插入
             # 对于重复的行直接忽略
-            except IntegrityError:
+            except Exception:
                 for x in self.item_list_2:
                     try:
                         sql = f'insert into video_static values {x};'
                         self.cursor.execute(sql)
                         self.dbpool.commit()
-                    except IntegrityError:
+                    except Exception:
                         pass
                 self.item_list_2.clear()

@@ -15,10 +15,10 @@ if __name__ == '__main__':
     settings = get_project_settings()
     # 获取当前日期作为表名
     dynamic_table = 'video_dynamic_' + time.strftime("%y%m%d", time.localtime())
-    log_file = 'log' + time.strftime('%y%,%d', time.localtime()) + '.log'
+    log_file = 'log' + time.strftime('%y%m%d', time.localtime()) + '.log'
     # 设置settings中的插入表名
     settings.set(name='DYNAMIC_TABLE_NAME', value=dynamic_table)
-    settings.set(name='LOG_FILE', value=log_file)
+    # settings.set(name='LOG_FILE', value=log_file)
     # mysql连接信息
     host = settings.get('MYSQL_HOST')
     database = settings.get('MYSQL_DATABASE')
@@ -26,14 +26,14 @@ if __name__ == '__main__':
     password = settings.get('MYSQL_PASSWORD')
     port = settings.get('MYSQL_PORT')
     # 创建mysql连接
-    # db = pymysql.connect(host=host, port=port, user=user, password=password, database=database)
+    db = pymysql.connect(host=host, port=port, user=user, password=password, database=database)
 
     # 按照爬取日期创建数据表
-    # cursor = db.cursor()
-    # sql = 'SET FOREIGN_KEY_CHECKS=0;'
-    # cursor.execute(sql)
-    # sql = 'DROP TABLE IF EXISTS `' + dynamic_table + '`;'
-    # cursor.execute(sql)
+    cursor = db.cursor()
+    sql = 'SET FOREIGN_KEY_CHECKS=0;'
+    cursor.execute(sql)
+    sql = 'DROP TABLE IF EXISTS `' + dynamic_table + '`;'
+    cursor.execute(sql)
     sql = "CREATE TABLE `" + dynamic_table + \
           """`(`aid` int(11) NOT NULL,
                 `view` int(11) DEFAULT NULL,
@@ -46,7 +46,7 @@ if __name__ == '__main__':
                 PRIMARY KEY (`aid`)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
           """
-    # cursor.execute(sql)
+    cursor.execute(sql)
 
     process = CrawlerProcess(settings)
     # 指定多个spider

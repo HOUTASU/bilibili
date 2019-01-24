@@ -59,7 +59,7 @@ class VideoSpider(scrapy.Spider):
             end = time.time()
             logging.info(f'获取1K条链接共用时：{(end - start)//60}分{(end - start) % 60}秒')
 
-        logging.info('----------开始获取当天最新视频信息----------')
+        logging.info('\n----------开始获取当天最新视频信息----------')
         for i in range(last, last + 1000000, 100):
             s = ','.join([str(x) for x in range(i, i + 100)])
             yield scrapy.Request(url=self.base_url + s, callback=self.parse_json)
@@ -109,7 +109,12 @@ class VideoSpider(scrapy.Spider):
             item['copyright'] = video['copyright']
             item['pubdate'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(video['pubdate']))
             item['duration'] = video['duration']
-            item['title'] = video['title']
+            title = str(video['title'])
+            if title.find('　') != -1:
+                title.replace('　', '')
+            # if len(title) >= 100:
+            #     title = title[:99]
+            item['title'] = title
             item['mid'] = video['owner']['mid']
             # 视频动态属性
             item['view'] = video['stat']['view']
