@@ -18,7 +18,7 @@ if __name__ == '__main__':
     log_file = 'log' + time.strftime('%y%m%d', time.localtime()) + '.log'
     # 设置settings中的插入表名
     settings.set(name='DYNAMIC_TABLE_NAME', value=dynamic_table)
-    # settings.set(name='LOG_FILE', value=log_file)
+    settings.set(name='LOG_FILE', value=log_file)
     # mysql连接信息
     host = settings.get('MYSQL_HOST')
     database = settings.get('MYSQL_DATABASE')

@@ -63,6 +63,11 @@ class VideoSpider(scrapy.Spider):
         for i in range(last, last + 1000000, 100):
             s = ','.join([str(x) for x in range(i, i + 100)])
             yield scrapy.Request(url=self.base_url + s, callback=self.parse_json)
+            if i % 1000 == 0:
+                re = time.time()
+                if re - rs != 0:
+                    print(f'\r每秒请求数为：{round(10/(re - rs), 2)}个', end='')
+                rs = time.time()
             if self.code == 2:
                 break
 
