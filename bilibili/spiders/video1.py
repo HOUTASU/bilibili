@@ -54,10 +54,10 @@ class VideoSpider(scrapy.Spider):
                 if i % 1000 == 0:
                     re = time.time()
                     if re - rs != 0:
-                        print(f'\r每秒请求数为：{round(10/(re - rs), 2)}个', end='')
+                        print(f'\r每秒请求数为：{round(10 / (re - rs), 2)}个', end='')
                     rs = time.time()
             end = time.time()
-            logging.info(f'获取1K条链接共用时：{(end - start)//60}分{(end - start) % 60}秒')
+            logging.info(f'获取1K条链接共用时：{(end - start) // 60}分{(end - start) % 60}秒')
 
         logging.info('\n----------开始获取当天最新视频信息----------')
         for i in range(last, last + 1000000, 100):
@@ -66,7 +66,7 @@ class VideoSpider(scrapy.Spider):
             if i % 1000 == 0:
                 re = time.time()
                 if re - rs != 0:
-                    print(f'\r每秒请求数为：{round(10/(re - rs), 2)}个', end='')
+                    print(f'\r每秒请求数为：{round(10 / (re - rs), 2)}个', end='')
                 rs = time.time()
             if self.code == 2:
                 break
