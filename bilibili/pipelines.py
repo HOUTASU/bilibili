@@ -108,7 +108,7 @@ class MysqlPipeline(object):
                                      item['copyright'], item['duration'], item['title'], item['pic']))
         else:
             try:
-                sql = f'insert into video_static values ' + str(self.item_list_2)[1:-1] + ';'
+                sql = f'insert into video_static values {str(self.item_list_2)[1:-1]};'
                 self.cursor.execute(sql)
                 self.dbpool.commit()
                 self.item_list_2.clear()

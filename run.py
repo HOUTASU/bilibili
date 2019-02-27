@@ -20,13 +20,9 @@ if __name__ == '__main__':
     settings.set(name='DYNAMIC_TABLE_NAME', value=dynamic_table)
     settings.set(name='LOG_FILE', value=log_file)
     # mysql连接信息
-    host = settings.get('MYSQL_HOST')
-    database = settings.get('MYSQL_DATABASE')
-    user = settings.get('MYSQL_USER')
-    password = settings.get('MYSQL_PASSWORD')
-    port = settings.get('MYSQL_PORT')
+    mysql_config = settings.get('MYSQL_CONFIG')
     # 创建mysql连接
-    db = pymysql.connect(host=host, port=port, user=user, password=password, database=database)
+    db = pymysql.connect(**mysql_config)
 
     # 按照爬取日期创建数据表
     cursor = db.cursor()
