@@ -78,10 +78,10 @@ ITEM_PIPELINES = {
     'bilibili.pipelines.MysqlPipeline': 301,
 }
 
-# redis信息
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_PASSWORD = 'cuit051072'
+# mongo信息
+MONGO_URI = 'mongodb://admin:051072@148.70.23.117:27017/'
+MONGO_DB = 'bilibili'
+
 # mysql信息
 MYSQL_CONFIG = {
     'host': '119.27.176.229',
