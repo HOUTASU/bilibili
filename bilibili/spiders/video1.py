@@ -15,6 +15,7 @@ class VideoSpider(scrapy.Spider):
     base_url = 'https://api.bilibili.com/x/article/archives?ids='
     code = 0
 
+
     def start_requests(self):
         # 获取设置中的mysql连接信息
         settings = get_project_settings()

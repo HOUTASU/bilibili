@@ -166,13 +166,16 @@ class MongoPipeline(object):
 
     # item插入集合中，集合名在item类中定义
     def process_item(self, item, spider):
-        video = self.db['video_data'].find_one({"aid": item['aid']})
-        if video:
-            self.db['video_data'].insert(dict(item))
-        else:
-            now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-            video[now] = dict(item)
-            self.db['video_data'].update_one({'aid': item['aid']}, {'$set': video})
+        _item = dict(item)
+        video = self.db['video_data'].find_one({'_id': str(item['aid'])})
+        now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        if video is None:
+            _item['trace_time'] = now
+            self.db['video_data'].save({'_id': str(item['aid'])})
+            video = self.db['video_data'].find_one({'_id': str(item['aid'])})
+        _item['trace_time'] = now
+        video[str(len(video))] = _item
+        self.db['video_data'].update_one({'_id': video['_id']}, {'$set': video})
         return item
 
     # 关闭mongo连接

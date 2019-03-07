@@ -12,13 +12,18 @@ class TracerSpider(scrapy.Spider):
     start_urls = ['http://api.bilibili.com/']
     settings = get_project_settings()
     base_url = 'https://api.bilibili.com/x/article/archives?ids='
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'bilibili.pipelines.MongoPipeline': 300,
+        },
+    }
 
     def start_requests(self):
         mysql_config = self.settings.get('MYSQL_CONFIG')
         mysql_config['database'] = 'biliweb'
         my_conn = pymysql.connect(**mysql_config)
 
-        sql = "select aid from  'bdvs_video';"
+        sql = "select aid from  bdvs_video;"
         cursor = my_conn.cursor()
         cursor.execute(sql)
         results = cursor.fetchall()
