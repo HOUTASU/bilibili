@@ -49,3 +49,11 @@ class staticItem(scrapy.Item):
     coin = Field()
     share = Field()
     like = Field()
+
+
+class upItem(scrapy.Item):
+    mid = Field()
+    fans = Field()
+    archive = Field()
+    follow = Field()
+    article = Field()

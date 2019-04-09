@@ -9,7 +9,7 @@ import time
 import pymysql
 import pymongo
 from pymysql.err import IntegrityError
-from bilibili.items import dynamicItem
+from bilibili.items import dynamicItem, upItem
 
 
 class MysqlPipeline(object):
@@ -166,6 +166,13 @@ class MongoPipeline(object):
 
     # item插入集合中，集合名在item类中定义
     def process_item(self, item, spider):
+        if type(item) is dynamicItem:
+            self.insert_video(item)
+        if type(item) is upItem:
+            self.insert_up(item)
+        return item
+
+    def insert_video(self, item):
         _item = dict(item)
         video = self.db['video_data'].find_one({'_id': str(item['aid'])})
         now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
@@ -176,7 +183,18 @@ class MongoPipeline(object):
         _item['trace_time'] = now
         video[str(len(video))] = _item
         self.db['video_data'].update_one({'_id': video['_id']}, {'$set': video})
-        return item
+
+    def insert_up(self, item):
+        _item = dict(item)
+        up = self.db['up_data'].find_one({'_id': str(item['mid'])})
+        now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        if up is None:
+            _item['trace_time'] = now
+            self.db['up_data'].save({'_id': str(item['mid'])})
+            up = self.db['up_data'].find_one({'_id': str(item['mid'])})
+        _item['trace_time'] = now
+        up[str(len(up))] = _item
+        self.db['up_data'].update_one({'_id': up['_id']}, {'$set': up})
 
     # 关闭mongo连接
     def close_spider(self, spider):
