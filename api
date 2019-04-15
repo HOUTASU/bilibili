@@ -1,0 +1,7 @@
+用户相关：
+https://api.bilibili.com/x/relation/stat?vmid=2&jsonp=jsonp
+https://api.bilibili.com/x/space/upstat?mid=2&jsonp=jsonp
+https://api.bilibili.com/x/web-interface/card?mid=2
+
+视频相关：
+https://api.bilibili.com/x/article/archives?ids=
