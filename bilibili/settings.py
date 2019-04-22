@@ -88,7 +88,7 @@ MYSQL_CONFIG = {
     'port': 10012,
     'database': 'bili',
     'user': 'root',
-    'password': '1428850347a+'
+    'password': 'cuit051072sW+'
 }
 
 DYNAMIC_TABLE_NAME = ''

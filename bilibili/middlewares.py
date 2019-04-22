@@ -93,7 +93,7 @@ class ErrorCodeMiddleware(object):
         redis_port = settings.get('REDIS_PORT')
         redis_pwd = settings.get('REDIS_PASSWORD')
         return cls(
-            redisDB=redis.Redis(host=redis_host, port=redis_port,)
+            redisDB=redis.Redis(host=redis_host, port=redis_port, )
         )
 
     def process_response(self, request, response, spider):
