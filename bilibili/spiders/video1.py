@@ -19,16 +19,12 @@ class VideoSpider(scrapy.Spider):
     def start_requests(self):
         # 获取设置中的mysql连接信息
         settings = get_project_settings()
-        host = settings.get('MYSQL_HOST')
-        database = settings.get('MYSQL_DATABASE')
-        user = settings.get('MYSQL_USER')
-        password = settings.get('MYSQL_PASSWORD')
-        port = settings.get('MYSQL_PORT')
+        mysql_config = settings.get('MYSQL_CONFIG')
 
         # 创建mysql连接
-        con = pymysql.connect(host=host, port=port, database=database, user=user, password=password)
+        con = pymysql.connect(**mysql_config)
         cursor = con.cursor()
-        last = 0
+        last = 50154779
 
         # 根据获取的aid号，构造url连接
         while 1:

@@ -5,3 +5,15 @@ https://api.bilibili.com/x/web-interface/card?mid=2
 
 视频相关：
 https://api.bilibili.com/x/article/archives?ids=
+
+
+生日，名称，签名，等级，大会员状态：
+https://api.bilibili.com/x/space/acc/info?mid={mid}
+收藏夹状态：
+https://api.bilibili.com/medialist/gateway/base/created?pn=1&ps=10&up_mid={mid}
+关注数，粉丝数：
+https://api.bilibili.com/x/relation/stat?mid={mid}
+直播间信息：
+https://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid={mid}
+投稿信息：
+https://api.bilibili.com/x/space/navnum?mid={mid}

@@ -16,7 +16,7 @@ class MysqlPipeline(object):
     # 批量插入，每100条写成一条sql语句,减少数据库访问次数
 
     def __init__(self, mysql_config, dynamic_table):
-        mysql_config['charset'] = 'utf-8'
+        mysql_config['charset'] = 'utf8'
         self.mysql_config = mysql_config
         self.dynamic_table = dynamic_table
         self.item_list_1 = []
