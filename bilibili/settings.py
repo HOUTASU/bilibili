@@ -79,8 +79,8 @@ ITEM_PIPELINES = {
 }
 
 # mongo信息
-MONGO_URI = 'mongodb://admin:051072@148.70.23.117:27017/'
-MONGO_DB = 'bilibili'
+MONGO_URI = ''
+MONGO_DB = ''
 
 # mysql信息
 MYSQL_CONFIG = {
