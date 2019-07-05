@@ -1,2 +1,3 @@
-# bili_spider
-简书地址：https://www.jianshu.com/p/41db4a3d9cca （会详细介绍代码）
+毕设项目，b站视频数据爬取。
+采用scrapy框架。
+每日获取全站所有视频的播放、硬币等数据。
