@@ -84,11 +84,11 @@ MONGO_DB = 'bilibili'
 
 # mysql信息
 MYSQL_CONFIG = {
-    'host': '119.27.176.229',
-    'port': 10012,
-    'database': 'bili',
-    'user': 'root',
-    'password': 'cuit051072sW+'
+    'host': '',
+    'port': 0000,
+    'database': '',
+    'user': '',
+    'password': ''
 }
 
 DYNAMIC_TABLE_NAME = ''

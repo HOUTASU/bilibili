@@ -14,11 +14,11 @@ import pymysql
 import time
 
 MYSQL_CONFIG = {
-    'host': '119.27.176.229',
-    'port': 10012,
-    'database': 'bili',
-    'user': 'root',
-    'password': 'cuit051072sW+'
+    'host': '',
+    'port': 0,
+    'database': '',
+    'user': '',
+    'password': ''
 }
 
 online_url = 'https://api.bilibili.com/x/web-interface/online'
